@@ -23,7 +23,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `empresa_db`.`Tecnicos` (
   `idTecnico` INT NOT NULL AUTO_INCREMENT,
-  `cuil` INT NOT NULL,
+  `cuil` BIGINT NOT NULL,
   `nombre` VARCHAR(150) NOT NULL,
   `foto` INT NULL,
   `mail` VARCHAR(255) NULL,
