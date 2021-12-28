@@ -1,0 +1,114 @@
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Clientes` (
+  `idCliente` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(150) NOT NULL,
+  `mail` VARCHAR(255) NULL,
+  `telefono` VARCHAR(45) NULL,
+  PRIMARY KEY (`idCliente`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Fotos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Fotos` (
+  `idFotos` INT NOT NULL,
+  `Imagen` LONGBLOB NOT NULL,
+  `Fecha` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idFotos`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Tecnicos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Tecnicos` (
+  `idTecnico` INT NOT NULL AUTO_INCREMENT,
+  `cuil` INT NOT NULL,
+  `nombre` VARCHAR(150) NOT NULL,
+  `foto` INT NULL,
+  `mail` VARCHAR(255) NULL,
+  `telefono` VARCHAR(45) NULL,
+  PRIMARY KEY (`idTecnico`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Usuarios` (
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(150) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `mail` VARCHAR(255) NULL,
+  `telefono` VARCHAR(45) NULL,
+  `rol` VARCHAR(45) NULL,
+  PRIMARY KEY (`idUsuario`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Especialidades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Especialidades` (
+  `idEspecialidades` INT NOT NULL AUTO_INCREMENT,
+  `nombreEspecialidad` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idEspecialidades`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Tecnicos_Especialidades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Tecnicos_Especialidades` (
+  `Tecnicos_cuil` INT NOT NULL,
+  `Especialidades_idEspecialidades` INT NOT NULL,
+  PRIMARY KEY (`Tecnicos_cuil`, `Especialidades_idEspecialidades`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Servicios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Servicios` (
+  `idServicios` INT NOT NULL,
+  `Nombre` VARCHAR(100) NULL,
+  PRIMARY KEY (`idServicios`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`ReporteIncidentes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`ReporteIncidentes` (
+  `idReporteIncidentes` INT NOT NULL,
+  `usuario` INT NOT NULL,
+  `cliente` INT NOT NULL,
+  `tecnico` INT NOT NULL,
+  `servicio` INT NULL,
+  `descripcion` VARCHAR(1000) NULL,
+  `tipo` VARCHAR(45) NULL,
+  `estado` VARCHAR(45) NULL,
+  `considereaciones` VARCHAR(1000) NULL,
+  PRIMARY KEY (`idReporteIncidentes`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Tecnico-Especialidad`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Tecnico-Especialidad` (
+  `idTecnico` INT NOT NULL,
+  `idEspecialidades` INT NOT NULL,
+  PRIMARY KEY (`idTecnico`, `idEspecialidades`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `empresa_db`.`Cliente-Servicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `empresa_db`.`Cliente-Servicio` (
+  `idCliente` INT NOT NULL,
+  `idServicio` INT NOT NULL,
+  PRIMARY KEY (`idCliente`, `idServicio`))
+ENGINE = InnoDB;
